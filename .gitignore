@@ -1,0 +1,34 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+*.iml
+
+# Android
+android/.gradle/
+android/captures/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/**/GeneratedPluginRegistrant.java
+*.jks
+*.keystore
+
+# iOS
+ios/.symlinks/
+ios/Flutter/.last_build_id
+ios/Pods/
+
+# Node backend
+backend/node_modules/
+backend/.env
+
+# Misc
+*.log
+.DS_Store
+.idea/
+.vscode/settings.json
