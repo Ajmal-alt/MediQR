@@ -1,7 +1,7 @@
 // lib/utils/app_config.dart
 class AppConfig {
   // ⚠️ Change this to your server IP before building
-  static const String baseUrl = 'http://10.254.246.155:3000';
+  static const String baseUrl = 'http://255.255.255.0:3000';
   static const String apiUrl = '$baseUrl/api';
 
   // App info
