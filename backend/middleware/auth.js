@@ -1,6 +1,8 @@
 // backend/middleware/auth.js
 const jwt = require('jsonwebtoken');
-const SECRET = 'mediqr_v3_secret_key_change_in_production';
+require('dotenv').config();
+
+const SECRET = process.env.JWT_SECRET || 'mediqr_v3_secret_key_change_in_production';
 
 module.exports = (req, res, next) => {
   const header = req.headers['authorization'];

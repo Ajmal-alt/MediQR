@@ -1,0 +1,51 @@
+# MediQR V3 - Docker Compose
+# Run: docker-compose up -d
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: mediqr-backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=mediqr3
+      - DB_PORT=3306
+      - JWT_SECRET=change_this_secret_in_production
+      - PUBLIC_URL=http://localhost:3000
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend/videos:/app/videos
+      - ./backend/images:/app/images
+
+  mysql:
+    image: mysql:8.0
+    container_name: mediqr-mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mediqr3
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:

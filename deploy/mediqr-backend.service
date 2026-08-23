@@ -1,0 +1,16 @@
+[Unit]
+Description=MediQR V3 Backend API
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/mediqr/backend
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=10
+Environment=NODE_ENV=production
+EnvironmentFile=/home/ubuntu/mediqr/backend/.env
+
+[Install]
+WantedBy=multi-user.target

@@ -1,7 +1,8 @@
 // lib/utils/app_config.dart
 class AppConfig {
-  // ⚠️ Change this to your server IP before building
-  static const String baseUrl = 'http://255.255.255.0:3000';
+  // ⚠️ Change this to your EC2 public IP or domain before building
+  // Example: 'http://54.123.45.67' or 'https://api.yourdomain.com'
+  static const String baseUrl = 'http://YOUR_EC2_PUBLIC_IP';
   static const String apiUrl = '$baseUrl/api';
 
   // App info
